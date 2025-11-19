@@ -10,33 +10,42 @@ export function Hero() {
       </div>
       <div className="relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <div className="space-y-6">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#22d3ee]">Arquitecto de software</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#22d3ee]">
+            Arquitecto de Software · Ciberseguridad · IA aplicada
+          </p>
           <h1 className="text-4xl font-semibold leading-tight text-white sm:text-5xl">
-            Hola, soy Facundo Sola. Construyo experiencias digitales futuristas con IA y diseño cuidando cada detalle.
+            Construyo experiencias digitales seguras, escalables y futuristas combinando desarrollo, ciberseguridad e
+            inteligencia artificial.
           </h1>
           <p className="max-w-2xl text-lg text-neutral-300">
-            Mezclo arquitectura moderna, sistemas distribuidos y productos AI-first. Me mueven los equipos ágiles, la
-            velocidad de entrega y el impacto en negocio.
+            Formación sólida, enfoque práctico y visión moderna aplicada a proyectos reales. Bases fuertes en software,
+            seguridad informática e IA para llevar productos a producción con confianza.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
-              href="#projects"
+              href="/facundo-sola-cv.pdf"
               className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-neutral-100"
             >
-              Ver proyectos destacados
+              Descargar CV
+            </Link>
+            <Link
+              href="#projects"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/50"
+            >
+              Ver proyectos
             </Link>
             <Link
               href="#contact"
               className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/50"
             >
-              Escríbeme
+              Contacto profesional
             </Link>
           </div>
           <ul className="flex flex-wrap gap-4 text-xs text-neutral-400">
-            <li className="rounded-full border border-white/10 px-3 py-1">Next.js</li>
-            <li className="rounded-full border border-white/10 px-3 py-1">TypeScript</li>
-            <li className="rounded-full border border-white/10 px-3 py-1">LLMs</li>
-            <li className="rounded-full border border-white/10 px-3 py-1">Product Design</li>
+            <li className="rounded-full border border-white/10 px-3 py-1">Ciberseguridad (Google, Hacking Ético)</li>
+            <li className="rounded-full border border-white/10 px-3 py-1">C#, .NET, EF Core</li>
+            <li className="rounded-full border border-white/10 px-3 py-1">SQL avanzado</li>
+            <li className="rounded-full border border-white/10 px-3 py-1">IA aplicada (LLM, automatización)</li>
           </ul>
         </div>
         <div className="relative flex items-center justify-center">
@@ -50,7 +59,7 @@ export function Hero() {
               className="rounded-xl object-cover"
             />
             <div className="absolute left-3 top-3 flex items-center gap-2 rounded-full bg-black/60 px-3 py-1 text-xs text-white">
-              <span className="h-2 w-2 rounded-full bg-emerald-400" /> Disponible para colaboraciones
+              <span className="h-2 w-2 rounded-full bg-emerald-400" /> Disponible para nuevas oportunidades Junior / Trainee
             </div>
           </div>
         </div>
