@@ -1,65 +1,145 @@
-import Image from "next/image";
+import Link from "next/link";
+import { BackgroundFx } from "@/components/background-fx";
+import { CommandPalette } from "@/components/command-palette";
+import { CursorTrail } from "@/components/cursor-trail";
+import { Footer } from "@/components/footer";
+import { Hero } from "@/components/hero";
+import { Navbar } from "@/components/navbar";
+import { ProjectCard, Project } from "@/components/project-card";
+import { SectionHeader } from "@/components/section-header";
+import { posts } from "@/lib/blog";
+
+const featuredProjects: Project[] = [
+  {
+    title: "Motor de orquestación LLM",
+    description: "Diseñé un gateway de prompts con trazabilidad, A/B testing y costos controlados por feature flag.",
+    tags: ["LLM", "Observabilidad", "Edge"],
+    href: "/projects",
+    highlight: "IA aplicada",
+  },
+  {
+    title: "E-commerce headless",
+    description: "Implementé storefront en Next.js con diseño modular, performance web vital y personalización en tiempo real.",
+    tags: ["Next.js", "Design System", "DX"],
+    href: "/projects",
+    highlight: "Producto",
+  },
+];
+
+const highlights = [
+  {
+    title: "Arquitectura de producto",
+    description: "De MVP a scale-up: sistemas que crecen sin frenar a producto ni diseño.",
+  },
+  {
+    title: "IA con propósito",
+    description: "Experimentos rápidos con modelos fundacionales, medidos con métricas de negocio.",
+  },
+  {
+    title: "Experiencia cuidada",
+    description: "Microinteracciones, estados vacíos y accesibilidad que dan confianza a los usuarios.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <>
+      <Navbar />
+      <BackgroundFx />
+      <CursorTrail />
+      <main className="mx-auto flex max-w-5xl flex-col gap-16 px-6 py-28">
+        <Hero />
+
+        <section className="grid gap-4 rounded-3xl border border-white/10 bg-black/40 p-6" id="about">
+          <SectionHeader eyebrow="Quién soy" title="Arquitecto de software + Product designer" />
+          <div className="grid gap-6 md:grid-cols-3">
+            {highlights.map((item) => (
+              <div key={item.title} className="rounded-2xl border border-white/10 bg-neutral-950/70 p-4">
+                <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                <p className="mt-2 text-sm text-neutral-300">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="space-y-6" id="projects">
+          <SectionHeader
+            eyebrow="Proyectos"
+            title="Trabajos recientes"
+            description="Soluciones que combinan negocio, producto e ingeniería."
+            cta={
+              <Link
+                href="/projects"
+                className="rounded-full border border-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:border-white/40"
+              >
+                Ver todo
+              </Link>
+            }
+          />
+          <div className="grid gap-6 md:grid-cols-2">
+            {featuredProjects.map((project) => (
+              <ProjectCard key={project.title} project={project} />
+            ))}
+          </div>
+        </section>
+
+        <section className="space-y-6" id="blog">
+          <SectionHeader
+            eyebrow="Blog"
+            title="Notas recientes"
+            description="Ideas en construcción sobre IA aplicada y experiencias digitales."
+            cta={
+              <Link
+                href="/blog"
+                className="rounded-full border border-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:border-white/40"
+              >
+                Ver blog
+              </Link>
+            }
+          />
+          <div className="grid gap-6 md:grid-cols-2">
+            {posts.slice(0, 2).map((post) => (
+              <article key={post.slug} className="rounded-2xl border border-white/10 bg-black/40 p-5 shadow-lg">
+                <p className="text-xs uppercase tracking-[0.2em] text-[#22d3ee]">{post.tags.join(" • ")}</p>
+                <h3 className="mt-2 text-xl font-semibold text-white">{post.title}</h3>
+                <p className="mt-2 text-sm text-neutral-300">{post.excerpt}</p>
+                <div className="mt-4 flex items-center justify-between text-xs text-neutral-400">
+                  <span>{new Date(post.publishedAt).toLocaleDateString("es-AR")}</span>
+                  <Link href={`/blog/${post.slug}`} className="font-semibold text-white transition hover:text-[#22d3ee]">
+                    Leer →
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="grid gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-[#0f172a] to-black p-8" id="contact">
+          <SectionHeader
+            eyebrow="Colaboremos"
+            title="Listo para tu próximo sprint"
+            description="Si necesitas acelerar un MVP, diseñar una experiencia o guiar una re-arquitectura, conversemos."
+          />
+          <div className="flex flex-wrap items-center gap-4">
+            <Link
+              href="mailto:facundo@sola.dev"
+              className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-neutral-100"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              Enviar email
+            </Link>
+            <Link
+              href="https://www.linkedin.com/in/facundosola/"
+              target="_blank"
+              className="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/50"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+              LinkedIn
+            </Link>
+            <p className="text-sm text-neutral-300">Tiempo de respuesta habitual: 24 hs.</p>
+          </div>
+        </section>
       </main>
-    </div>
+      <Footer />
+      <CommandPalette />
+    </>
   );
 }
