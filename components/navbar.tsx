@@ -5,8 +5,11 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const links = [
+  { href: "#about", label: "Quién soy" },
+  { href: "#skills", label: "Habilidades" },
   { href: "#projects", label: "Proyectos" },
-  { href: "#blog", label: "Blog" },
+  { href: "#education", label: "Formación" },
+  { href: "#experience", label: "Experiencia" },
   { href: "#contact", label: "Contacto" },
 ];
 
