@@ -122,13 +122,13 @@ export default function Home() {
           />
           <div className="flex flex-wrap items-center gap-4">
             <Link
-              href="mailto:facundo@sola.dev"
+              href="mailto:solafacu@gmail.com"
               className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-neutral-100"
             >
               Enviar email
             </Link>
             <Link
-              href="https://www.linkedin.com/in/facundosola/"
+              href="https://www.linkedin.com/in/facusola"
               target="_blank"
               className="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/50"
             >
