@@ -19,7 +19,7 @@ export const posts: Post[] = [
     tags: ["Next.js", "IA", "Arquitectura"],
     summary:
       "Decisiones técnicas, patrones y herramientas que usé para construir este portafolio futurista.",
-    publishedAt: "2025-11-01",
+    publishedAt: "2025-11-19",
     content: [
       "En este post explico cómo estructuré el portafolio utilizando Next.js, el App Router y componentes reutilizables.",
       "También detallo cómo integré efectos visuales futuristas, el laboratorio de IA y la sección de proyectos dinámicos.",
@@ -31,7 +31,7 @@ export const posts: Post[] = [
     tags: ["Salud", "Angular", "Firebase"],
     summary:
       "Proyecto de gestión de turnos médicos: decisiones de arquitectura, problemas reales y qué mejoraría en una v2.",
-    date: "2025-10-20",
+    publishedAt: "2025-11-19",
     content: [
       "MiTurnoSalud nació como una solución para organizar turnos médicos y reducir el ausentismo.",
       "En el post repaso cómo modelé las entidades principales, cómo integré autenticación y notificaciones, y qué haría distinto en una nueva versión.",
