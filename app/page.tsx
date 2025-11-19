@@ -7,37 +7,136 @@ import { Hero } from "@/components/hero";
 import { Navbar } from "@/components/navbar";
 import { ProjectCard, Project } from "@/components/project-card";
 import { SectionHeader } from "@/components/section-header";
-import { posts } from "@/lib/blog";
 
 const featuredProjects: Project[] = [
   {
-    title: "Motor de orquestación LLM",
-    description: "Diseñé un gateway de prompts con trazabilidad, A/B testing y costos controlados por feature flag.",
-    tags: ["LLM", "Observabilidad", "Edge"],
+    title: "MiTurnoSalud (2025)",
+    description:
+      "Gestión médica con recordatorios, autenticación y notificaciones para pacientes y profesionales.",
+    tags: ["Angular", "Firebase", "HL7", "Autenticación", "Notificaciones"],
+    href: "/projects",
+    highlight: "Salud digital",
+  },
+  {
+    title: "TotalTech Store (2024–2025)",
+    description:
+      "E-commerce de productos tecnológicos con arquitectura modular, gestión de catálogo y performance optimizada.",
+    tags: ["C#", "EF Core", "SQL Server", "Arquitectura modular"],
+    href: "/projects",
+    highlight: "Retail tech",
+  },
+  {
+    title: "Sistema de Gestión de Proyectos y Equipos (.NET)",
+    description:
+      "Aplicación Windows Forms con ABM completo, Entity Framework y base de datos estructurada para equipos y tareas.",
+    tags: ["Windows Forms", "EF Core", "SQL", "Arquitectura limpia"],
+    href: "/projects",
+    highlight: ".NET desktop",
+  },
+  {
+    title: "App Android Bluetooth HC-06",
+    description: "Control y comunicación con módulo Bluetooth desde smartphone, orientado a hardware DIY.",
+    tags: ["Android", "Bluetooth", "HC-06", "Control remoto"],
+    href: "/projects",
+    highlight: "IoT / Maker",
+  },
+  {
+    title: "Laboratorio de IA",
+    description: "Generadores de texto, asistentes personales y automatizaciones con LLM integradas a flujos reales.",
+    tags: ["LLM", "Automatización", "n8n", "Integraciones"],
     href: "/projects",
     highlight: "IA aplicada",
   },
+];
+
+const aboutHighlights = [
+  "Especialización en Ciberseguridad (Google Cybersecurity en progreso)",
+  "Hacking Ético + Kali Linux + Metasploit",
+  "SQL avanzado y EF Core sobre C# y Windows Forms",
+  "IA aplicada: LLMs, generación de contenido y automatización",
+];
+
+const skills = [
   {
-    title: "E-commerce headless",
-    description: "Implementé storefront en Next.js con diseño modular, performance web vital y personalización en tiempo real.",
-    tags: ["Next.js", "Design System", "DX"],
-    href: "/projects",
-    highlight: "Producto",
+    title: "Tecnologías principales",
+    items: [
+      "C#, Windows Forms, .NET, EF Core",
+      "SQL Server (avanzado), SQL",
+      "HTML, CSS3, JavaScript",
+      "Python (básico / intermedio)",
+    ],
+  },
+  {
+    title: "Ciberseguridad",
+    items: [
+      "Google Cybersecurity (en progreso)",
+      "Hacking Ético",
+      "Kali Linux y Metasploit avanzado",
+      "Gestión de riesgos y seguridad en redes",
+    ],
+  },
+  {
+    title: "IA aplicada",
+    items: [
+      "LLMs (OpenAI / Gemini / modelos generativos)",
+      "Creación de prompts y asistentes",
+      "Automatización con n8n",
+      "Integración de IA en proyectos",
+    ],
+  },
+  {
+    title: "Herramientas y soporte",
+    items: [
+      "Microsoft Office avanzado",
+      "Linux y GitHub",
+      "Redes, mantenimiento y soporte técnico",
+      "Documentación y coaching ontológico",
+    ],
   },
 ];
 
-const highlights = [
+const education = [
   {
-    title: "Arquitectura de producto",
-    description: "De MVP a scale-up: sistemas que crecen sin frenar a producto ni diseño.",
+    title: "ICES – Técnico Superior en Desarrollo de Software",
+    timeframe: "2022–Actualidad — Promedio 7,71",
+    details: [
+      "Bases de Datos, Ingeniería Software I & II, Lógica, Sistemas Operativos, Inglés Técnico",
+    ],
   },
   {
-    title: "IA con propósito",
-    description: "Experimentos rápidos con modelos fundacionales, medidos con métricas de negocio.",
+    title: "Google Cybersecurity Professional Certificate",
+    timeframe: "En progreso",
+    details: ["Módulos completados: fundamentos de seguridad, amenazas y gestión de riesgos"],
   },
   {
-    title: "Experiencia cuidada",
-    description: "Microinteracciones, estados vacíos y accesibilidad que dan confianza a los usuarios.",
+    title: "Cursos y certificaciones",
+    timeframe: "",
+    details: [
+      "Hacking Ético • Kali Linux • Metasploit avanzado • SQL • Excel avanzado (Udemy)",
+      "Coaching Ontológico",
+      "Abogacía — UCSE (14 materias aprobadas)",
+    ],
+  },
+];
+
+const experiences = [
+  {
+    company: "Ferretería y Corralón",
+    timeframe: "2025–Actualidad",
+    roles: ["Atención al cliente y logística", "Soporte técnico, organización e inventarios"],
+  },
+  {
+    company: "Soporte técnico freelance",
+    timeframe: "2019–Actualidad",
+    roles: [
+      "Reparación y optimización de equipos",
+      "Armado de PCs, redes y seguridad informática básica",
+    ],
+  },
+  {
+    company: "Estudios Jurídicos",
+    timeframe: "2017 y 2021",
+    roles: ["Tareas administrativas y documentación", "Gestión técnica de equipos"],
   },
 ];
 
@@ -50,13 +149,46 @@ export default function Home() {
       <main className="mx-auto flex max-w-5xl flex-col gap-16 px-6 py-28">
         <Hero />
 
-        <section className="grid gap-4 rounded-3xl border border-white/10 bg-black/40 p-6" id="about">
-          <SectionHeader eyebrow="Quién soy" title="Arquitecto de software + Product designer" />
-          <div className="grid gap-6 md:grid-cols-3">
-            {highlights.map((item) => (
-              <div key={item.title} className="rounded-2xl border border-white/10 bg-neutral-950/70 p-4">
-                <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                <p className="mt-2 text-sm text-neutral-300">{item.description}</p>
+        <section className="grid gap-6 rounded-3xl border border-white/10 bg-black/40 p-6" id="about">
+          <SectionHeader
+            eyebrow="Quién soy"
+            title="Desarrollador con foco en ciberseguridad e IA aplicada"
+            description="Formación técnica sólida, práctica en soporte y redes, y proyectos reales de software."
+          />
+          <p className="max-w-4xl text-sm text-neutral-200">
+            Soy Técnico Superior en Desarrollo de Software en formación, orientado a Ciberseguridad e Inteligencia
+            Artificial. Actualmente curso la Certificación Profesional en Ciberseguridad de Google y programas de IA
+            generativa. Tengo experiencia real en soporte técnico, redes, atención al cliente, control de stock e
+            implementación de soluciones prácticas. Me apasiona la innovación tecnológica y busco integrarla en proyectos
+            productivos donde la seguridad, el diseño y la eficiencia sean protagonistas.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {aboutHighlights.map((item) => (
+              <span key={item} className="rounded-full border border-white/10 px-4 py-2 text-xs text-neutral-200">
+                {item}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <section className="space-y-6" id="skills">
+          <SectionHeader
+            eyebrow="Habilidades"
+            title="Stack alineado a mi formación"
+            description="Tecnologías principales, seguridad informática, IA aplicada y soporte técnico."
+          />
+          <div className="grid gap-4 md:grid-cols-2">
+            {skills.map((group) => (
+              <div key={group.title} className="space-y-3 rounded-2xl border border-white/10 bg-neutral-950/70 p-5">
+                <h3 className="text-lg font-semibold text-white">{group.title}</h3>
+                <ul className="space-y-2 text-sm text-neutral-300">
+                  {group.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <span className="mt-1 h-2 w-2 rounded-full bg-[#22d3ee]" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
@@ -65,16 +197,8 @@ export default function Home() {
         <section className="space-y-6" id="projects">
           <SectionHeader
             eyebrow="Proyectos"
-            title="Trabajos recientes"
-            description="Soluciones que combinan negocio, producto e ingeniería."
-            cta={
-              <Link
-                href="/projects"
-                className="rounded-full border border-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:border-white/40"
-              >
-                Ver todo
-              </Link>
-            }
+            title="Software y experimentos de IA"
+            description="Aplicaciones alineadas a mi experiencia real y formación en seguridad."
           />
           <div className="grid gap-6 md:grid-cols-2">
             {featuredProjects.map((project) => (
@@ -83,33 +207,54 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="space-y-6" id="blog">
+        <section className="grid gap-6 rounded-3xl border border-white/10 bg-black/40 p-6" id="education">
           <SectionHeader
-            eyebrow="Blog"
-            title="Notas recientes"
-            description="Ideas en construcción sobre IA aplicada y experiencias digitales."
-            cta={
-              <Link
-                href="/blog"
-                className="rounded-full border border-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:border-white/40"
-              >
-                Ver blog
-              </Link>
-            }
+            eyebrow="Formación académica"
+            title="Base técnica y especialización en seguridad"
+            description="Programas formales, certificaciones y estudios complementarios que respaldan mi perfil."
           />
-          <div className="grid gap-6 md:grid-cols-2">
-            {posts.slice(0, 2).map((post) => (
-              <article key={post.slug} className="rounded-2xl border border-white/10 bg-black/40 p-5 shadow-lg">
-                <p className="text-xs uppercase tracking-[0.2em] text-[#22d3ee]">{post.tags.join(" • ")}</p>
-                <h3 className="mt-2 text-xl font-semibold text-white">{post.title}</h3>
-                <p className="mt-2 text-sm text-neutral-300">{post.excerpt}</p>
-                <div className="mt-4 flex items-center justify-between text-xs text-neutral-400">
-                  <span>{new Date(post.publishedAt).toLocaleDateString("es-AR")}</span>
-                  <Link href={`/blog/${post.slug}`} className="font-semibold text-white transition hover:text-[#22d3ee]">
-                    Leer →
-                  </Link>
+          <div className="space-y-4">
+            {education.map((item) => (
+              <div key={item.title} className="rounded-2xl border border-white/10 bg-neutral-950/70 p-5">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                  <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                  <p className="text-sm text-[#22d3ee]">{item.timeframe}</p>
                 </div>
-              </article>
+                <ul className="mt-3 space-y-2 text-sm text-neutral-300">
+                  {item.details.map((detail) => (
+                    <li key={detail} className="flex items-start gap-2">
+                      <span className="mt-1 h-2 w-2 rounded-full bg-[#22d3ee]" />
+                      <span>{detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="space-y-6" id="experience">
+          <SectionHeader
+            eyebrow="Experiencia laboral"
+            title="Trayectoria con enfoque práctico"
+            description="Soporte técnico, atención al cliente y organización con mentalidad de seguridad."
+          />
+          <div className="space-y-4">
+            {experiences.map((experience) => (
+              <div key={experience.company} className="rounded-2xl border border-white/10 bg-neutral-950/70 p-5">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                  <h3 className="text-lg font-semibold text-white">{experience.company}</h3>
+                  <p className="text-sm text-[#22d3ee]">{experience.timeframe}</p>
+                </div>
+                <ul className="mt-3 space-y-2 text-sm text-neutral-300">
+                  {experience.roles.map((role) => (
+                    <li key={role} className="flex items-start gap-2">
+                      <span className="mt-1 h-2 w-2 rounded-full bg-[#22d3ee]" />
+                      <span>{role}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
         </section>
@@ -117,8 +262,8 @@ export default function Home() {
         <section className="grid gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-[#0f172a] to-black p-8" id="contact">
           <SectionHeader
             eyebrow="Colaboremos"
-            title="Listo para tu próximo sprint"
-            description="Si necesitas acelerar un MVP, diseñar una experiencia o guiar una re-arquitectura, conversemos."
+            title="Listo para nuevos desafíos"
+            description="Disponible para roles Junior/Trainee con foco en desarrollo, ciberseguridad e IA aplicada."
           />
           <div className="flex flex-wrap items-center gap-4">
             <Link
@@ -134,7 +279,17 @@ export default function Home() {
             >
               LinkedIn
             </Link>
-            <p className="text-sm text-neutral-300">Tiempo de respuesta habitual: 24 hs.</p>
+            <Link
+              href="https://github.com/Facundo2504"
+              target="_blank"
+              className="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/50"
+            >
+              GitHub
+            </Link>
+            <p className="text-sm text-neutral-300">
+              Disponibilidad horaria amplia, remoto o presencial. Posibilidad de viajar y colaborar en proyectos con visión de
+              seguridad.
+            </p>
           </div>
         </section>
       </main>
