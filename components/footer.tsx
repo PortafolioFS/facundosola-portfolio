@@ -5,13 +5,13 @@ export function Footer() {
         <p className="font-semibold text-white">Facundo Sola</p>
         <p>Diseño y código desde el futuro. Buenos Aires, remoto para el mundo.</p>
         <div className="flex gap-4 text-white">
-          <a className="hover:text-[#22d3ee]" href="https://github.com/facundosola" target="_blank" rel="noreferrer">
+          <a className="hover:text-[#22d3ee]" href="https://github.com/Facundo2504" target="_blank" rel="noreferrer">
             GitHub
           </a>
-          <a className="hover:text-[#22d3ee]" href="https://www.linkedin.com/in/facundosola/" target="_blank" rel="noreferrer">
+          <a className="hover:text-[#22d3ee]" href="https://www.linkedin.com/in/facusola" target="_blank" rel="noreferrer">
             LinkedIn
           </a>
-          <a className="hover:text-[#22d3ee]" href="mailto:facundo@sola.dev">
+          <a className="hover:text-[#22d3ee]" href="mailto:solafacu@gmail.com">
             Email
           </a>
         </div>
