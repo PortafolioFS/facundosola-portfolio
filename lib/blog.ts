@@ -19,7 +19,7 @@ export const posts: Post[] = [
     tags: ["Next.js", "IA", "Arquitectura"],
     summary:
       "Decisiones técnicas, patrones y herramientas que usé para construir este portafolio futurista.",
-    date: "2025-11-01",
+    publishedAt: "2025-11-01",
     content: [
       "En este post explico cómo estructuré el portafolio utilizando Next.js, el App Router y componentes reutilizables.",
       "También detallo cómo integré efectos visuales futuristas, el laboratorio de IA y la sección de proyectos dinámicos.",
