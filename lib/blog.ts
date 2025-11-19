@@ -3,9 +3,10 @@ export type Post = {
   title: string;
   summary: string;
   date: string;
+  publishedAt?: string;
   tags: string[];
   aiGenerated?: boolean;
-  content?: string[];
+  content?: string | string[];
 };
 
 export const posts: Post[] = [
