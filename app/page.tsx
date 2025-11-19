@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { BackgroundFx } from "@/components/background-fx";
 import { CommandPalette } from "@/components/command-palette";
+import { ContactSection } from "@/components/contact-section";
 import { CursorTrail } from "@/components/cursor-trail";
 import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
@@ -259,39 +259,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="grid gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-[#0f172a] to-black p-8" id="contact">
-          <SectionHeader
-            eyebrow="Colaboremos"
-            title="Listo para nuevos desafíos"
-            description="Disponible para roles Junior/Trainee con foco en desarrollo, ciberseguridad e IA aplicada."
-          />
-          <div className="flex flex-wrap items-center gap-4">
-            <Link
-              href="mailto:solafacu@gmail.com"
-              className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-neutral-100"
-            >
-              Enviar email
-            </Link>
-            <Link
-              href="https://www.linkedin.com/in/facusola"
-              target="_blank"
-              className="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/50"
-            >
-              LinkedIn
-            </Link>
-            <Link
-              href="https://github.com/Facundo2504"
-              target="_blank"
-              className="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/50"
-            >
-              GitHub
-            </Link>
-            <p className="text-sm text-neutral-300">
-              Disponibilidad horaria amplia, remoto o presencial. Posibilidad de viajar y colaborar en proyectos con visión de
-              seguridad.
-            </p>
-          </div>
-        </section>
+        <ContactSection />
       </main>
       <Footer />
       <CommandPalette />

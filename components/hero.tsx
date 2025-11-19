@@ -57,9 +57,9 @@ export function Hero() {
             </Link>
             <Link
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/50"
+              className="rounded-full bg-white px-5 py-2 text-sm font-semibold text-black"
             >
-              Contacto profesional
+              Enviar email
             </Link>
           </div>
 
