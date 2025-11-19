@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { fetchGitHubProjects } from "@/lib/github";
 
-export const revalidate = 60 * 60;
+// Run this endpoint dynamically to avoid build-time fetch failures in environments without outbound network access.
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   const projects = await fetchGitHubProjects("facundosola");
