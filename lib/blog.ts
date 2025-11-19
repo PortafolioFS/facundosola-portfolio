@@ -1,10 +1,11 @@
 export type Post = {
   slug: string;
   title: string;
-  summary: string;
-  date: string;
+  summary?: string;
+  excerpt?: string;
+  date?: string;
   publishedAt?: string;
-  tags: string[];
+  tags?: string[];
   aiGenerated?: boolean;
   content?: string | string[];
 };
