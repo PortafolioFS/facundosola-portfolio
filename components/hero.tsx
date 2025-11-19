@@ -11,7 +11,7 @@ export function Hero() {
       <div className="relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <div className="space-y-6">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#22d3ee]">
-            Arquitecto de Software · Ciberseguridad · IA aplicada
+
           </p>
           <h1 className="text-4xl font-semibold leading-tight text-white sm:text-5xl">
             Construyo experiencias digitales seguras, escalables y futuristas combinando desarrollo, ciberseguridad e
@@ -47,6 +47,10 @@ export function Hero() {
             <li className="rounded-full border border-white/10 px-3 py-1">SQL avanzado</li>
             <li className="rounded-full border border-white/10 px-3 py-1">IA aplicada (LLM, automatización)</li>
           </ul>
+          <p className="text-sm text-neutral-300">
+            <span className="font-semibold text-white">Facundo Sola</span> ·{' '}
+            <span className="text-emerald-400">Disponible para nuevas oportunidades Junior / Trainee</span>
+          </p>
         </div>
         <div className="relative flex items-center justify-center">
           <div className="relative h-[320px] w-full max-w-sm overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/60 p-3 shadow-2xl">
