@@ -6,11 +6,9 @@ import { Resend } from "resend";
 const apiKey = process.env.RESEND_API_KEY;
 
 if (!apiKey) {
-  // Esto se ve en los logs de Vercel si algo falla con la variable
+  // Esto se ve en los logs de Vercel si falta la variable en tiempo de build
   console.warn("⚠ RESEND_API_KEY no está definida en el entorno.");
 }
-
-const resend = new Resend(apiKey ?? "");
 
 export async function POST(req: NextRequest) {
   try {
@@ -33,6 +31,9 @@ export async function POST(req: NextRequest) {
         { status: 503 }
       );
     }
+
+    // Instanciamos Resend aquí (en tiempo de ejecución), no durante el import.
+    const resend = new Resend(apiKey);
 
     await resend.emails.send({
       from: "Portfolio Web <onboarding@resend.dev>",
