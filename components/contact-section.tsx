@@ -56,8 +56,12 @@ export function ContactSection() {
       form.reset();
     } catch (err) {
       setStatus("error");
-      const message = err instanceof Error ? err.message : "Hubo un problema al enviar el mensaje.";
-      setErrorMsg(message);
+      const baseMessage =
+        err instanceof Error ? err.message : "Hubo un problema al enviar el mensaje.";
+      const withFallback = baseMessage.includes("servicio de email")
+        ? `${baseMessage} Podés escribirme directamente a solafacu@gmail.com mientras lo soluciono.`
+        : `${baseMessage} Si el problema persiste, escribime a solafacu@gmail.com.`;
+      setErrorMsg(withFallback);
     }
   }
 

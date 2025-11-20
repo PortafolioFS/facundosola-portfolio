@@ -4,6 +4,12 @@ import { Resend } from "resend";
 
 const resendApiKey = process.env.RESEND_API_KEY;
 
+const contactEmail = "solafacu@gmail.com";
+const serviceMisconfiguredMessage =
+  "El servicio de email no está configurado. Por favor escribime a solafacu@gmail.com.";
+
+
+
 const sanitizeText = (value: unknown) =>
   typeof value === "string" ? value.trim() : "";
 
@@ -19,8 +25,13 @@ export async function POST(req: NextRequest) {
   try {
     if (!resendApiKey) {
       return NextResponse.json(
+
+        { error: serviceMisconfiguredMessage },
+        { status: 503 }
+
         { error: "Falta la configuración del servicio de email." },
         { status: 500 }
+
       );
     }
 
@@ -47,7 +58,11 @@ export async function POST(req: NextRequest) {
 
     await resend.emails.send({
       from: "Portfolio Web <onboarding@resend.dev>",
+
+      to: contactEmail,
+
       to: "solafacu@gmail.com",
+ master
       replyTo: payload.email,
       subject: payload.subject || `Nuevo mensaje de ${payload.name}`,
       html: `
