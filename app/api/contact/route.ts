@@ -2,31 +2,64 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resendApiKey = process.env.RESEND_API_KEY;
+const contactEmail = "solafacu@gmail.com";
+const serviceMisconfiguredMessage =
+  "El servicio de email no está configurado. Por favor escribime a solafacu@gmail.com.";
+
+const sanitizeText = (value: unknown) =>
+  typeof value === "string" ? value.trim() : "";
+
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, subject, message } = await req.json();
+    if (!resendApiKey) {
+      return NextResponse.json(
+        { error: serviceMisconfiguredMessage },
+        { status: 503 }
+      );
+    }
 
-    if (!name || !email || !message) {
+    const payload = await req
+      .json()
+      .then((body) => ({
+        name: sanitizeText(body?.name),
+        email: sanitizeText(body?.email),
+        subject: sanitizeText(body?.subject),
+        message: sanitizeText(body?.message),
+      }))
+      .catch(() => ({ name: "", email: "", subject: "", message: "" }));
+
+    if (!payload.name || !payload.email || !payload.message) {
       return NextResponse.json(
         { error: "Faltan datos obligatorios." },
         { status: 400 }
       );
     }
 
-   await resend.emails.send({
-  from: "Portfolio Web <onboarding@resend.dev>",
-  to: "solafacu@gmail.com",
-  replyTo: email as string,
-  subject: subject || `Nuevo mensaje de ${name}`,
-  html: `
-    <h2>Nuevo mensaje desde tu portafolio</h2>
-    <p><strong>Nombre:</strong> ${name}</p>
-    <p><strong>Email:</strong> ${email}</p>
-    <p><strong>Asunto:</strong> ${subject || "(Sin asunto)"}</p>
-    <p><strong>Mensaje:</strong></p>
-    <p>${message}</p>
+    const resend = new Resend(resendApiKey);
+
+    const safeMessage = escapeHtml(payload.message).replace(/\n/g, "<br>");
+
+    await resend.emails.send({
+      from: "Portfolio Web <onboarding@resend.dev>",
+      to: contactEmail,
+      replyTo: payload.email,
+      subject: payload.subject || `Nuevo mensaje de ${payload.name}`,
+      html: `
+        <h2>Nuevo mensaje desde tu portafolio</h2>
+        <p><strong>Nombre:</strong> ${escapeHtml(payload.name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(payload.email)}</p>
+        <p><strong>Asunto:</strong> ${escapeHtml(payload.subject || "(Sin asunto)")}</p>
+        <p><strong>Mensaje:</strong></p>
+        <p>${safeMessage}</p>
       `,
     });
 
