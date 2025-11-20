@@ -8,17 +8,35 @@ export function ContactSection() {
   );
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
+  const getStringField = (value: FormDataEntryValue | null) =>
+    typeof value === "string" ? value.trim() : "";
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("sending");
     setErrorMsg(null);
 
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const subject = formData.get("subject");
-    const message = formData.get("message");
+    const name = getStringField(formData.get("name"));
+    const email = getStringField(formData.get("email"));
+    const subject = getStringField(formData.get("subject"));
+    const message = getStringField(formData.get("message"));
+
+    if (!name || !email || !message) {
+      setStatus("error");
+      setErrorMsg("Completá nombre, email y mensaje para continuar.");
+      return;
+    }
+
+    if (!emailPattern.test(email)) {
+      setStatus("error");
+      setErrorMsg("Ingresá un email válido.");
+      return;
+    }
+
+    setStatus("sending");
 
     try {
       const res = await fetch("/api/contact", {
