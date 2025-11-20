@@ -1,34 +1,32 @@
 export const dynamic = "force-dynamic";
 // app/api/contact/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
-
-const apiKey = process.env.RESEND_API_KEY;
-
-if (!apiKey) {
-  // Esto se ve en los logs de Vercel si falta la variable en tiempo de build
-  console.warn("⚠ RESEND_API_KEY no está definida en el entorno.");
-}
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, subject, message } = await req.json();
+    const apiKey = process.env.RESEND_API_KEY;
 
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: "Faltan datos obligatorios (nombre, email o mensaje)." },
-        { status: 400 }
-      );
-    }
-
-    // Si REALMENTE no hay API key, devolvemos este error
     if (!apiKey) {
+      // Log visible en Vercel durante el build o en tiempo de ejecución
+      console.warn("⚠ RESEND_API_KEY no está definida en el entorno.");
       return NextResponse.json(
         {
           error:
             "El servicio de email no está disponible en este momento. Podés escribirme directamente a solafacu@gmail.com.",
         },
         { status: 503 }
+      );
+    }
+
+    // Importamos Resend solo cuando contamos con la API key.
+    const { Resend } = await import("resend");
+
+    const { name, email, subject, message } = await req.json();
+
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { error: "Faltan datos obligatorios (nombre, email o mensaje)." },
+        { status: 400 }
       );
     }
 
