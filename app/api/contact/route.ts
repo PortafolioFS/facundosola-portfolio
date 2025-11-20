@@ -1,5 +1,8 @@
+// app/api/contact/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: NextRequest) {
   try {
@@ -12,36 +15,24 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT || 587),
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
-
-    const toEmail = process.env.TO_EMAIL || "solafacu@gmail.com";
-
-    await transporter.sendMail({
-      from: `"Portfolio Web" <${process.env.SMTP_USER}>`,
-      to: toEmail,
+    await resend.emails.send({
+      from: "Portfolio Web <onboarding@resend.dev>",
+      to: "solafacu@gmail.com",
       replyTo: email,
       subject: subject || `Nuevo mensaje de ${name}`,
-      text: `
-Nombre: ${name}
-Email: ${email}
-Asunto: ${subject || "(Sin asunto)"}
-
-Mensaje:
-${message}
-      `.trim(),
+      html: `
+        <h2>Nuevo mensaje desde tu portafolio</h2>
+        <p><strong>Nombre:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Asunto:</strong> ${subject || "Sin asunto"}</p>
+        <p><strong>Mensaje:</strong></p>
+        <p>${message}</p>
+      `,
     });
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error("Error enviando email:", error);
+    console.error(error);
     return NextResponse.json(
       { error: "Error interno al enviar el email." },
       { status: 500 }
