@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const links = [
@@ -14,7 +13,6 @@ const links = [
 ];
 
 export function Navbar() {
-  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   return (
@@ -29,7 +27,6 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               className="transition hover:text-white"
-              aria-current={pathname === link.href ? "page" : undefined}
             >
               {link.label}
             </a>
