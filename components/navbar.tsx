@@ -34,12 +34,6 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
-          <Link
-            href="/projects"
-            className="rounded-full border border-white/10 px-4 py-2 transition hover:border-white/40 hover:text-white"
-          >
-            Ver proyectos
-          </Link>
         </nav>
         <button
           className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-white transition hover:border-white/40 md:hidden"
