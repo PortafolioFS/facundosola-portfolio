@@ -2,67 +2,49 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resendApiKey = process.env.RESEND_API_KEY;
+const apiKey = process.env.RESEND_API_KEY;
 
-const contactEmail = "solafacu@gmail.com";
-const serviceMisconfiguredMessage =
-  "El servicio de email no está configurado. Por favor escribime a solafacu@gmail.com.";
+if (!apiKey) {
+  // Esto se ve en los logs de Vercel si algo falla con la variable
+  console.warn("⚠ RESEND_API_KEY no está definida en el entorno.");
+}
 
-
-
-const sanitizeText = (value: unknown) =>
-  typeof value === "string" ? value.trim() : "";
-
-const escapeHtml = (value: string) =>
-  value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
+const resend = new Resend(apiKey ?? "");
 
 export async function POST(req: NextRequest) {
   try {
-    if (!resendApiKey) {
-      return NextResponse.json(
-        { error: serviceMisconfiguredMessage },
-        { status: 503 }
-      );
-    }
+    const { name, email, subject, message } = await req.json();
 
-    const payload = await req
-      .json()
-      .then((body) => ({
-        name: sanitizeText(body?.name),
-        email: sanitizeText(body?.email),
-        subject: sanitizeText(body?.subject),
-        message: sanitizeText(body?.message),
-      }))
-      .catch(() => ({ name: "", email: "", subject: "", message: "" }));
-
-    if (!payload.name || !payload.email || !payload.message) {
+    if (!name || !email || !message) {
       return NextResponse.json(
-        { error: "Faltan datos obligatorios." },
+        { error: "Faltan datos obligatorios (nombre, email o mensaje)." },
         { status: 400 }
       );
     }
 
-    const resend = new Resend(resendApiKey);
-
-    const safeMessage = escapeHtml(payload.message).replace(/\n/g, "<br>");
+    // Si REALMENTE no hay API key, devolvemos este error
+    if (!apiKey) {
+      return NextResponse.json(
+        {
+          error:
+            "El servicio de email no está disponible en este momento. Podés escribirme directamente a solafacu@gmail.com.",
+        },
+        { status: 503 }
+      );
+    }
 
     await resend.emails.send({
       from: "Portfolio Web <onboarding@resend.dev>",
-      to: contactEmail,
-      replyTo: payload.email,
-      subject: payload.subject || `Nuevo mensaje de ${payload.name}`,
+      to: "solafacu@gmail.com",
+      replyTo: String(email),
+      subject: subject || `Nuevo mensaje de ${name}`,
       html: `
         <h2>Nuevo mensaje desde tu portafolio</h2>
-        <p><strong>Nombre:</strong> ${escapeHtml(payload.name)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(payload.email)}</p>
-        <p><strong>Asunto:</strong> ${escapeHtml(payload.subject || "(Sin asunto)")}</p>
+        <p><strong>Nombre:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Asunto:</strong> ${subject || "(Sin asunto)"}</p>
         <p><strong>Mensaje:</strong></p>
-        <p>${safeMessage}</p>
+        <p>${message}</p>
       `,
     });
 
