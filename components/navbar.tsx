@@ -57,12 +57,7 @@ export function Navbar() {
                 {link.label}
               </a>
             ))}
-            {/* <Link
-              href="/#projects"
-              className="rounded-full border border-white/20 px-4 py-1.5 text-sm font-semibold text-white hover:bg-white/10 transition"
-            >
-              Ver proyectos
-            </Link> */}
+        
           </div>
         </div>
       ) : null}

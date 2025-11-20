@@ -49,12 +49,7 @@ export function Hero() {
             >
               Descargar CV
             </Link>
-            <Link
-              href="#projects"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/50"
-            >
-              Ver proyectos
-            </Link>
+          
             <Link
               href="#contact"
               className="rounded-full bg-white px-5 py-2 text-sm font-semibold text-black"
