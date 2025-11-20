@@ -4,7 +4,7 @@ export type Project = {
   title: string;
   description: string;
   tags: string[];
-  href: string;
+  href?: string;
   highlight?: string;
 };
 
@@ -26,13 +26,15 @@ export function ProjectCard({ project }: { project: Project }) {
           </span>
         ))}
       </div>
-      <Link
-        href={project.href}
-        className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-[#22d3ee]"
-      >
-        Ver detalle
-        <span aria-hidden>→</span>
-      </Link>
+      {project.href ? (
+        <Link
+          href={project.href}
+          className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-[#22d3ee]"
+        >
+          Ver detalle
+          <span aria-hidden>→</span>
+        </Link>
+      ) : null}
     </article>
   );
 }

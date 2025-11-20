@@ -14,7 +14,6 @@ const featuredProjects: Project[] = [
     description:
       "Gestión médica con recordatorios, autenticación y notificaciones para pacientes y profesionales.",
     tags: ["Angular", "Firebase", "HL7", "Autenticación", "Notificaciones"],
-    href: "/projects",
     highlight: "Salud digital",
   },
   {
@@ -22,7 +21,6 @@ const featuredProjects: Project[] = [
     description:
       "E-commerce de productos tecnológicos con arquitectura modular, gestión de catálogo y performance optimizada.",
     tags: ["C#", "EF Core", "SQL Server", "Arquitectura modular"],
-    href: "/projects",
     highlight: "Retail tech",
   },
   {
@@ -30,21 +28,18 @@ const featuredProjects: Project[] = [
     description:
       "Aplicación Windows Forms con ABM completo, Entity Framework y base de datos estructurada para equipos y tareas.",
     tags: ["Windows Forms", "EF Core", "SQL", "Arquitectura limpia"],
-    href: "/projects",
     highlight: ".NET desktop",
   },
   {
     title: "App Android Bluetooth HC-06",
     description: "Control y comunicación con módulo Bluetooth desde smartphone, orientado a hardware DIY.",
     tags: ["Android", "Bluetooth", "HC-06", "Control remoto"],
-    href: "/projects",
     highlight: "IoT / Maker",
   },
   {
     title: "Laboratorio de IA",
     description: "Generadores de texto, asistentes personales y automatizaciones con LLM integradas a flujos reales.",
     tags: ["LLM", "Automatización", "n8n", "Integraciones"],
-    href: "/projects",
     highlight: "IA aplicada",
   },
 ];
