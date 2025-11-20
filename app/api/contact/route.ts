@@ -15,24 +15,24 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    await resend.emails.send({
-      from: "Portfolio Web <onboarding@resend.dev>",
-      to: "solafacu@gmail.com",
-      replyTo: email,
-      subject: subject || `Nuevo mensaje de ${name}`,
-      html: `
-        <h2>Nuevo mensaje desde tu portafolio</h2>
-        <p><strong>Nombre:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Asunto:</strong> ${subject || "Sin asunto"}</p>
-        <p><strong>Mensaje:</strong></p>
-        <p>${message}</p>
+   await resend.emails.send({
+  from: "Portfolio Web <onboarding@resend.dev>",
+  to: "solafacu@gmail.com",
+  replyTo: email as string,
+  subject: subject || `Nuevo mensaje de ${name}`,
+  html: `
+    <h2>Nuevo mensaje desde tu portafolio</h2>
+    <p><strong>Nombre:</strong> ${name}</p>
+    <p><strong>Email:</strong> ${email}</p>
+    <p><strong>Asunto:</strong> ${subject || "(Sin asunto)"}</p>
+    <p><strong>Mensaje:</strong></p>
+    <p>${message}</p>
       `,
     });
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error(error);
+    console.error("Error al enviar el mail:", error);
     return NextResponse.json(
       { error: "Error interno al enviar el email." },
       { status: 500 }
