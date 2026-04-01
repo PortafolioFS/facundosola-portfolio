@@ -87,6 +87,7 @@ export const profile: Profile = {
   availability: "Disponible para nuevas oportunidades Junior / Trainee",
   quickFacts: [
     "Tacural, Santa Fe · remoto / presencial",
+    "Curso de Desarrollo con IA · BIG school",
     "Google Cybersecurity en progreso",
     "Laboratorio de IA aprobado en ICES",
     "Disponible para oportunidades Junior / Trainee",
@@ -163,6 +164,17 @@ export const education: EducationItem[] = [
 ];
 
 export const certifications: CertificationItem[] = [
+  {
+    title: "Curso de Iniciación al Desarrollo con IA",
+    issuer: "BIG school",
+    timeframe: "30/03/2026",
+    status: "Completado",
+    kind: "tecnica",
+    details: [
+      "Certificado de asistencia a las jornadas formativas “Desarrollo con IA”.",
+      "Carga horaria: 6 horas.",
+    ],
+  },
   {
     title: "Laboratorio de Ingeniería en Inteligencia Artificial",
     issuer: "ICES",
