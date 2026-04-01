@@ -4,12 +4,12 @@ import Link from "next/link";
 import { useState } from "react";
 
 const links = [
-  { href: "#about", label: "Quién soy" },
-  { href: "#skills", label: "Habilidades" },
-  { href: "#projects", label: "Proyectos" },
-  { href: "#education", label: "Formación" },
-  { href: "#experience", label: "Experiencia" },
-  { href: "#contact", label: "Contacto" },
+  { href: "/#about", label: "Quién soy" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/projects", label: "Proyectos" },
+  { href: "/cv", label: "CV" },
+  { href: "/blog", label: "Blog" },
+  { href: "/#contact", label: "Contacto" },
 ];
 
 export function Navbar() {
@@ -23,13 +23,13 @@ export function Navbar() {
         </Link>
         <nav className="hidden items-center gap-6 text-sm font-medium text-neutral-200 md:flex">
           {links.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="transition hover:text-white"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
         <button
@@ -44,11 +44,15 @@ export function Navbar() {
         <div className="border-t border-white/5 bg-black/70 px-6 py-4 md:hidden">
           <div className="flex flex-col gap-3 text-sm font-medium text-neutral-200">
             {links.map((link) => (
-              <a key={link.href} href={link.href} className="transition hover:text-white">
+              <Link
+                key={link.href}
+                href={link.href}
+                className="transition hover:text-white"
+                onClick={() => setOpen(false)}
+              >
                 {link.label}
-              </a>
+              </Link>
             ))}
-        
           </div>
         </div>
       ) : null}

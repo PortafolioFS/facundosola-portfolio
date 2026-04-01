@@ -1,22 +1,25 @@
-// app/layout.tsx
+﻿// app/layout.tsx
 import "./globals.css";
 import type { Metadata } from "next";
 
 const siteUrl = "https://facundosola.vercel.app";
-const title = "Facundo Sola – Portafolio Futurista";
+const title = "Facundo Sola | Desarrollo de Software, Ciberseguridad e IA";
 const description =
-  "Portafolio de Facundo Sola: desarrollo de software, IA aplicada y arquitectura moderna.";
+  "Portafolio de Facundo Sola: desarrollo de software junior, ciberseguridad e IA aplicada con foco en proyectos reales, formación técnica y contacto profesional.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title,
+  title: {
+    default: title,
+    template: "%s | Facundo Sola",
+  },
   description,
   alternates: {
     canonical: siteUrl,
   },
   openGraph: {
     type: "website",
-    locale: "es_ES",
+    locale: "es_AR",
     title,
     description,
     url: siteUrl,
