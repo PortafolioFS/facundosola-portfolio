@@ -5,9 +5,9 @@ export function ContactSection() {
   return (
     <section className="grid gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-[#0f172a] to-black p-8" id="contact">
       <SectionHeader
-        eyebrow="Colaboremos"
-        title="Listo para tu próximo sprint"
-        description="Si necesitas acelerar un MVP, diseñar una experiencia o guiar una re-arquitectura, conversemos."
+        eyebrow="Contacto"
+        title="Disponible para seguir creciendo"
+        description="Si querés ver mi perfil, revisar mis proyectos o conversar sobre una oportunidad, escribime y lo seguimos."
       />
       <div className="flex flex-wrap items-center gap-4">
         <Link

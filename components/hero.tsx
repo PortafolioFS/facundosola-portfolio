@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Download, Sparkles } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { portfolioProfile } from "@/lib/portfolio";
 
 export function Hero() {
   const { scrollY } = useScroll();
@@ -20,21 +21,17 @@ export function Hero() {
       <div className="flex-1 space-y-4">
         <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs">
           <Sparkles className="h-3.5 w-3.5" />
-          <span>Portafolio Futurista • IA & Software</span>
+          <span>{portfolioProfile.badge}</span>
         </div>
         <h1 className="text-4xl font-black leading-tight tracking-tight md:text-6xl">
           <span className="bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-indigo-500 bg-clip-text text-transparent">
-            Facundo Sola
+            {portfolioProfile.name}
           </span>
           <br />
-          <span className="text-white/90">
-            Desarrollo, Arquitectura & Inteligencia Artificial
-          </span>
+          <span className="text-white/90">{portfolioProfile.role}</span>
         </h1>
         <p className="mx-auto max-w-xl text-sm opacity-80 md:text-base">
-          Diseñador de soluciones tecnológicas que combinan frontend moderno,
-          backend robusto e IA aplicada. Enfocado en portafolios, sistemas de
-          gestión y experiencias digitales de alto impacto.
+          {portfolioProfile.summary}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
           <a
@@ -50,9 +47,16 @@ export function Hero() {
             Contactar
           </a>
           <a
-            href="https://drive.google.com/file/d/1kRnBZO5FdoWgvsf0UfcUM1F2CG9nfyOz/view?usp=drive_link"
+            href="#learning"
+            className="rounded-xl border border-white/10 bg-white/5 px-5 py-2.5 text-sm"
+          >
+            Ver formación
+          </a>
+          <a
+            href={portfolioProfile.cvUrl}
             className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm"
             target="_blank"
+            rel="noreferrer"
           >
             <Download className="h-4 w-4" /> Descargar CV
           </a>

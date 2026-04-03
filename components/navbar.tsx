@@ -31,7 +31,7 @@ export function Navbar({ onOpenCmd }: { onOpenCmd: () => void }) {
           className="flex items-center gap-2 font-semibold tracking-tight"
         >
           <Cpu className="h-5 w-5" />
-          <span>FACUNDO SOLA // FUTURE</span>
+          <span>FACUNDO SOLA // SOFTWARE & IA</span>
         </a>
         <nav className="hidden gap-4 md:flex">
           <a href="#about" className="opacity-80 hover:opacity-100">
@@ -40,8 +40,8 @@ export function Navbar({ onOpenCmd }: { onOpenCmd: () => void }) {
           <a href="#projects" className="opacity-80 hover:opacity-100">
             Proyectos
           </a>
-          <a href="#blog" className="opacity-80 hover:opacity-100">
-            Blog
+          <a href="#learning" className="opacity-80 hover:opacity-100">
+            Formación
           </a>
           <a href="#contact" className="opacity-80 hover:opacity-100">
             Contacto

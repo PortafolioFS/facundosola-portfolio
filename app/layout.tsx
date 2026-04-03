@@ -2,14 +2,14 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Facundo Sola – Portafolio Futurista",
+  title: "Facundo Sola | Desarrollo de Software, IA y Ciberseguridad",
   description:
-    "Portafolio de Facundo Sola: desarrollo de software, IA aplicada y arquitectura moderna.",
+    "Portfolio de Facundo Sola con proyectos reales, formación en desarrollo de software y certificados en IA, SQL y ciberseguridad.",
   metadataBase: new URL("https://facundosola.vercel.app"),
   openGraph: {
-    title: "Facundo Sola – Portafolio Futurista",
+    title: "Facundo Sola | Desarrollo de Software, IA y Ciberseguridad",
     description:
-      "Desarrollo de software, IA aplicada y arquitectura moderna.",
+      "Proyectos reales, formación actual y certificados verificados en software, IA, SQL y ciberseguridad.",
     url: "https://facundosola.vercel.app",
     siteName: "Facundo Sola",
   },

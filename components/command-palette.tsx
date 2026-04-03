@@ -43,7 +43,7 @@ export function CommandPalette({
           </button>
         </div>
         <p className="mt-4 text-sm text-neutral-300">
-          Pronto podrás abrir proyectos, contactar o buscar en el blog desde aquí.
+          Pronto podrás abrir proyectos, revisar formación o contactarme desde aquí.
         </p>
       </div>
     </div>

@@ -1,14 +1,9 @@
 import Link from "next/link";
+import type { PortfolioProject } from "@/lib/portfolio";
 
-export type Project = {
-  title: string;
-  description: string;
-  tags: string[];
-  href: string;
-  highlight?: string;
-};
+export function ProjectCard({ project }: { project: PortfolioProject }) {
+  const isExternal = project.href.startsWith("http");
 
-export function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="relative flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-neutral-950/60 p-5 shadow-lg transition hover:-translate-y-1 hover:border-white/30">
       <div className="space-y-3">
@@ -28,9 +23,11 @@ export function ProjectCard({ project }: { project: Project }) {
       </div>
       <Link
         href={project.href}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noreferrer" : undefined}
         className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-[#22d3ee]"
       >
-        Ver detalle
+        {project.ctaLabel ?? "Ver detalle"}
         <span aria-hidden>→</span>
       </Link>
     </article>
