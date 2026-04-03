@@ -27,11 +27,15 @@ export type LearningTrack = {
 
 export const portfolioProfile = {
   name: "Facundo Sola",
-  role: "Desarrollo de Software, IA y Ciberseguridad",
+  role: "Desarrollo de Software, IA, SQL y Ciberseguridad",
   badge: "Perfil junior en formación",
   summary:
-    "Estudiante de Técnico Superior en Desarrollo de Software, con formación en SQL, inteligencia artificial, ciberseguridad y experiencia en soporte técnico.",
+    "Estudiante de Técnico Superior en Desarrollo de Software, con formación en SQL, inteligencia artificial, ciberseguridad y experiencia en soporte técnico, sin inflar seniority ni alcance.",
+  email: "mailto:facundo@sola.dev",
+  linkedinUrl: "https://www.linkedin.com/in/facundosola/",
+  githubHandle: "Facundo2504",
   githubUrl: "https://github.com/Facundo2504",
+  siteUrl: "https://facundosola.vercel.app",
   cvUrl:
     "https://drive.google.com/file/d/1kRnBZO5FdoWgvsf0UfcUM1F2CG9nfyOz/view?usp=drive_link",
 };

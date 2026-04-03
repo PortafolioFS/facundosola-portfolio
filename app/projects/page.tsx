@@ -36,7 +36,7 @@ export default function ProjectsPage() {
           rel="noreferrer"
           className="mt-4 inline-flex items-center gap-2 font-semibold text-white transition hover:text-[#22d3ee]"
         >
-          Ir a GitHub
+          Ir a github.com/{portfolioProfile.githubHandle}
           <span aria-hidden>→</span>
         </Link>
       </div>
