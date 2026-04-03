@@ -31,7 +31,7 @@ export function Navbar({ onOpenCmd }: { onOpenCmd: () => void }) {
           className="flex items-center gap-2 font-semibold tracking-tight"
         >
           <Cpu className="h-5 w-5" />
-          <span>FACUNDO SOLA // SOFTWARE & IA</span>
+          <span>FACUNDO SOLA // PERFIL EN FORMACIÓN</span>
         </a>
         <nav className="hidden gap-4 md:flex">
           <a href="#about" className="opacity-80 hover:opacity-100">

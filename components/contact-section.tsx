@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SectionHeader } from "@/components/section-header";
+import { portfolioProfile } from "@/lib/portfolio";
 
 export function ContactSection() {
   return (
@@ -11,13 +12,13 @@ export function ContactSection() {
       />
       <div className="flex flex-wrap items-center gap-4">
         <Link
-          href="mailto:facundo@sola.dev"
+          href={portfolioProfile.email}
           className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-neutral-100"
         >
           Enviar email
         </Link>
         <Link
-          href="https://www.linkedin.com/in/facundosola/"
+          href={portfolioProfile.linkedinUrl}
           target="_blank"
           className="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/50"
         >
