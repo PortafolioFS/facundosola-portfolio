@@ -1,85 +1,77 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import { Download, Sparkles } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { portfolioProfile } from "@/lib/portfolio";
 
-import type { ContactLinks, Profile } from "@/lib/profile";
+export function Hero() {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 600], [0, -80]);
 
-type HeroProps = {
-  contacts: ContactLinks;
-  profile: Profile;
-};
-
-export function Hero({ contacts, profile }: HeroProps) {
   return (
-    <section id="top" className="py-10 lg:py-16">
-      <p className="text-xs font-semibold tracking-[0.3em] text-cyan-300 uppercase">
-        {profile.heroEyebrow}
-      </p>
-
-      <div className="mt-6 relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-        <div className="space-y-6">
-          <h1 className="text-4xl font-semibold leading-tight text-white sm:text-5xl">
-            {profile.heroTitle}
-          </h1>
-
-          <p className="max-w-2xl text-lg text-neutral-300">
-            {profile.heroDescription}
-          </p>
-
-          <div className="flex flex-wrap gap-3 text-xs text-neutral-300">
-            {profile.quickFacts.map((fact) => (
-              <span key={fact} className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
-                {fact}
-              </span>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href={contacts.cvPage}
-              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-neutral-100"
-            >
-              Ver CV web
-            </Link>
-
-            <a
-              href={contacts.cvPdf}
-              download
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/10"
-            >
-              Descargar PDF
-            </a>
-
-            <Link
-              href="/#contact"
-              className="rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30"
-            >
-              Contactar
-            </Link>
-          </div>
-
-          <p className="text-sm text-neutral-300">
-            <span className="font-semibold text-white">{profile.name}</span> · {profile.location} ·{" "}
-            <span className="text-emerald-400">
-              {profile.availability}
-            </span>
-          </p>
+    <section
+      id="top"
+      className="relative mx-auto flex max-w-6xl flex-col items-center px-4 pb-20 pt-16 text-center md:flex-row md:items-center md:gap-10 md:pt-24"
+    >
+      <motion.div
+        style={{ y }}
+        className="pointer-events-none absolute inset-x-0 -top-24 -z-10 mx-auto h-[420px] w-[70%] rounded-[40px] bg-gradient-to-r from-cyan-400/40 via-fuchsia-500/30 to-indigo-500/40 blur-3xl"
+      />
+      <div className="flex-1 space-y-4">
+        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs">
+          <Sparkles className="h-3.5 w-3.5" />
+          <span>{portfolioProfile.badge}</span>
         </div>
+        <h1 className="text-4xl font-black leading-tight tracking-tight md:text-6xl">
+          <span className="bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-indigo-500 bg-clip-text text-transparent">
+            {portfolioProfile.name}
+          </span>
+          <br />
+          <span className="text-white/90">{portfolioProfile.role}</span>
+        </h1>
+        <p className="mx-auto max-w-xl text-sm opacity-80 md:text-base">
+          {portfolioProfile.summary}
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
+          <a
+            href="#projects"
+            className="rounded-xl bg-gradient-to-r from-cyan-400 to-fuchsia-500 px-5 py-2.5 text-sm font-semibold text-white"
+          >
+            Ver proyectos
+          </a>
+          <a
+            href="#contact"
+            className="rounded-xl border border-white/10 bg-white/5 px-5 py-2.5 text-sm"
+          >
+            Contactar
+          </a>
+          <a
+            href="#learning"
+            className="rounded-xl border border-white/10 bg-white/5 px-5 py-2.5 text-sm"
+          >
+            Ver formación
+          </a>
+          <a
+            href={portfolioProfile.cvUrl}
+            className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Download className="h-4 w-4" /> Descargar CV
+          </a>
+        </div>
+      </div>
 
-        <div className="relative flex items-center justify-center">
-          <div className="relative h-[320px] w-full max-w-sm overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/60 p-3 shadow-2xl">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.06),transparent_35%)]" />
-            <Image
-              src="/facundo-hero.jpg"
-              alt="Facundo Sola"
-              fill
-              priority
-              className="rounded-xl object-cover"
-            />
-            <div className="absolute left-3 top-3 flex items-center gap-2 rounded-full bg-black/60 px-3 py-1 text-xs text-white">
-              <span className="h-2 w-2 rounded-full bg-emerald-400" />{" "}
-              {profile.availability}
-            </div>
-          </div>
+      <div className="mt-10 flex-1 md:mt-0">
+        <div className="relative mx-auto h-64 w-64 overflow-hidden rounded-[32px] border border-white/10 bg-gradient-to-br from-cyan-400/30 via-fuchsia-500/20 to-indigo-500/30 shadow-2xl">
+          <Image
+            src="/facundo-hero.jpg"
+            alt="Facundo Sola"
+            fill
+            className="object-cover"
+            priority
+          />
         </div>
       </div>
     </section>

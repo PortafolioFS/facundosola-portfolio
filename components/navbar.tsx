@@ -1,61 +1,68 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
+import { Cpu, Command, Moon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
 
-const links = [
-  { href: "/#about", label: "Quién soy" },
-  { href: "/#skills", label: "Skills" },
-  { href: "/projects", label: "Proyectos" },
-  { href: "/cv", label: "CV" },
-  { href: "/blog", label: "Blog" },
-  { href: "/#contact", label: "Contacto" },
-];
+export function Navbar({ onOpenCmd }: { onOpenCmd: () => void }) {
+  const [dark, setDark] = useState(true);
 
-export function Navbar() {
-  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    const root = document.documentElement;
+    if (dark) root.classList.add("dark");
+    else root.classList.remove("dark");
+  }, [dark]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        onOpenCmd();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onOpenCmd]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-30 border-b border-white/5 bg-black/50 backdrop-blur">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <Link href="/" className="text-sm font-semibold tracking-tight text-white">
-          facundosola.dev
-        </Link>
-        <nav className="hidden items-center gap-6 text-sm font-medium text-neutral-200 md:flex">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="transition hover:text-white"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-        <button
-          className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-white transition hover:border-white/40 md:hidden"
-          onClick={() => setOpen((prev) => !prev)}
-          aria-label="Abrir navegación"
+    <header className="sticky top-0 z-40 bg-black/40 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 text-sm">
+        <a
+          href="#top"
+          className="flex items-center gap-2 font-semibold tracking-tight"
         >
-          <span className="text-lg">≡</span>
-        </button>
-      </div>
-      {open ? (
-        <div className="border-t border-white/5 bg-black/70 px-6 py-4 md:hidden">
-          <div className="flex flex-col gap-3 text-sm font-medium text-neutral-200">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="transition hover:text-white"
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+          <Cpu className="h-5 w-5" />
+          <span>FACUNDO SOLA // SOFTWARE & IA</span>
+        </a>
+        <nav className="hidden gap-4 md:flex">
+          <a href="#about" className="opacity-80 hover:opacity-100">
+            Sobre mí
+          </a>
+          <a href="#projects" className="opacity-80 hover:opacity-100">
+            Proyectos
+          </a>
+          <a href="#learning" className="opacity-80 hover:opacity-100">
+            Formación
+          </a>
+          <a href="#contact" className="opacity-80 hover:opacity-100">
+            Contacto
+          </a>
+        </nav>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={onOpenCmd}
+            className="hidden items-center gap-1 rounded-xl border border-white/10 bg-white/10 px-2 py-1 md:flex"
+          >
+            <Command className="h-4 w-4" />{" "}
+            <span>Comandos</span>
+          </button>
+          <button
+            onClick={() => setDark((v) => !v)}
+            className="rounded-xl border border-white/10 bg-white/10 p-2"
+          >
+            {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
         </div>
-      ) : null}
+      </div>
     </header>
   );
 }

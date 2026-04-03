@@ -1,43 +1,17 @@
-﻿// app/layout.tsx
 import "./globals.css";
 import type { Metadata } from "next";
 
-const siteUrl = "https://facundosola.vercel.app";
-const title = "Facundo Sola | Desarrollo de Software, Ciberseguridad e IA";
-const description =
-  "Portafolio de Facundo Sola: desarrollo de software junior, ciberseguridad e IA aplicada con foco en proyectos reales, formación técnica y contacto profesional.";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: title,
-    template: "%s | Facundo Sola",
-  },
-  description,
-  alternates: {
-    canonical: siteUrl,
-  },
+  title: "Facundo Sola | Desarrollo de Software, IA y Ciberseguridad",
+  description:
+    "Portfolio de Facundo Sola con proyectos reales, formación en desarrollo de software y certificados en IA, SQL y ciberseguridad.",
+  metadataBase: new URL("https://facundosola.vercel.app"),
   openGraph: {
-    type: "website",
-    locale: "es_AR",
-    title,
-    description,
-    url: siteUrl,
+    title: "Facundo Sola | Desarrollo de Software, IA y Ciberseguridad",
+    description:
+      "Proyectos reales, formación actual y certificados verificados en software, IA, SQL y ciberseguridad.",
+    url: "https://facundosola.vercel.app",
     siteName: "Facundo Sola",
-    images: [
-      {
-        url: "/facundo-hero.jpg",
-        width: 1920,
-        height: 1080,
-        alt: title,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: ["/facundo-hero.jpg"],
   },
 };
 
