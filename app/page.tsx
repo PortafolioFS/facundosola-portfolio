@@ -31,12 +31,15 @@ export default function Home() {
               Perfil actual
             </p>
             <h2 className="mt-2 text-2xl font-semibold text-white sm:text-3xl">
-              Lo que sé hoy y cómo me estoy formando
+              Formación técnica y enfoque profesional
             </h2>
             <p className="mt-2 text-sm text-neutral-300">
-              Este portfolio está armado para mostrar un perfil realista:
-              formación técnica actual, proyectos propios publicados y
-              certificaciones verificadas.
+              Actualmente curso la Tecnicatura Superior en Desarrollo de
+              Software y complemento esa formación con bases en C#, SQL
+              Server, HTML, CSS y JavaScript, junto con capacitación en
+              ciberseguridad e inteligencia artificial. Esa preparación se
+              apoya en práctica concreta de soporte técnico, mantenimiento de
+              equipos y redes básicas.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
