@@ -37,29 +37,27 @@ function validatePayload(payload: ContactPayload) {
   const fieldErrors: FieldErrors = {};
 
   if (!name) {
-    fieldErrors.name = "Please enter your name.";
+    fieldErrors.name = "Ingresá tu nombre.";
   } else if (name.length < 2 || name.length > 80) {
-    fieldErrors.name = "Your name must contain between 2 and 80 characters.";
+    fieldErrors.name = "Tu nombre debe tener entre 2 y 80 caracteres.";
   }
 
   if (!email) {
-    fieldErrors.email = "Please enter your email address.";
+    fieldErrors.email = "Ingresá tu email.";
   } else if (!EMAIL_REGEX.test(email) || email.length > 320) {
-    fieldErrors.email = "Please enter a valid email address.";
+    fieldErrors.email = "Ingresá un email válido.";
   }
 
   if (!subject) {
-    fieldErrors.subject = "Please enter a subject.";
+    fieldErrors.subject = "Ingresá un asunto.";
   } else if (subject.length < 3 || subject.length > 120) {
-    fieldErrors.subject =
-      "The subject must contain between 3 and 120 characters.";
+    fieldErrors.subject = "El asunto debe tener entre 3 y 120 caracteres.";
   }
 
   if (!message) {
-    fieldErrors.message = "Please enter your message.";
+    fieldErrors.message = "Escribí tu mensaje.";
   } else if (message.length < 10 || message.length > 5000) {
-    fieldErrors.message =
-      "The message must contain between 10 and 5000 characters.";
+    fieldErrors.message = "El mensaje debe tener entre 10 y 5000 caracteres.";
   }
 
   return {
@@ -111,7 +109,7 @@ export async function POST(request: Request) {
     payload = (await request.json()) as ContactPayload;
   } catch {
     return NextResponse.json(
-      { ok: false, error: "Invalid request body." },
+      { ok: false, error: "La solicitud no tiene un formato válido." },
       { status: 400 }
     );
   }
@@ -120,7 +118,7 @@ export async function POST(request: Request) {
 
   if (data.website) {
     return NextResponse.json(
-      { ok: false, error: "Spam detected." },
+      { ok: false, error: "Detectamos un envío no válido." },
       { status: 400 }
     );
   }
@@ -129,7 +127,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         ok: false,
-        error: "Please review the highlighted fields.",
+        error: "Revisá los campos marcados.",
         fieldErrors,
       },
       { status: 400 }
@@ -147,15 +145,16 @@ export async function POST(request: Request) {
       replyTo: data.email,
       subject: `[Portfolio] ${data.subject}`,
       text: [
-        "New portfolio contact message",
+        "Nuevo mensaje desde el portfolio",
         "",
-        `From: ${data.name} <${data.email}>`,
+        `Nombre: ${data.name}`,
+        `Email: ${data.email}`,
         `Reply-To: ${data.email}`,
-        `Submitted: ${submittedAt}`,
+        `Enviado: ${submittedAt}`,
         "",
-        `Subject: ${data.subject}`,
+        `Asunto: ${data.subject}`,
         "",
-        "Message:",
+        "Mensaje:",
         data.message,
       ].join("\n"),
       html: buildEmailHtml({
@@ -174,7 +173,7 @@ export async function POST(request: Request) {
         {
           ok: false,
           error:
-            "We couldn't send your message right now. Please try again in a moment.",
+            "No pudimos enviar tu mensaje ahora. Probá nuevamente en un momento.",
         },
         { status: 500 }
       );
@@ -188,7 +187,7 @@ export async function POST(request: Request) {
       {
         ok: false,
         error:
-          "We couldn't send your message right now. Please try again in a moment.",
+          "No pudimos enviar tu mensaje ahora. Probá nuevamente en un momento.",
       },
       { status: 500 }
     );

@@ -160,7 +160,7 @@ export function ContactEmailDialog({ fallbackHref }: { fallbackHref: string }) {
 
       if (!response.ok || !result.ok) {
         setStatus("error");
-        setServerError(result.error ?? "We couldn't send your message.");
+        setServerError(result.error ?? "No pudimos enviar tu mensaje.");
         setFieldErrors(result.fieldErrors ?? {});
         return;
       }
@@ -171,7 +171,7 @@ export function ContactEmailDialog({ fallbackHref }: { fallbackHref: string }) {
     } catch {
       setStatus("error");
       setServerError(
-        "We couldn't send your message right now. Please try again in a moment."
+        "No pudimos enviar tu mensaje ahora. Probá nuevamente en un momento."
       );
     }
   }
