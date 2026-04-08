@@ -170,10 +170,10 @@ export const complementaryCertificates: Certificate[] = [
   },
   {
     title: "Líder Coach Sistémico",
-    date: "Sin fecha visible en el certificado",
+    institution: "Escuela Coaching Ontológico Americano",
+    date: "01/12/2020",
     duration: "27 hs",
-    notes:
-      "Certificado de asistencia. No habilita para la práctica profesional de coaching.",
+    
   },
 ];
 
